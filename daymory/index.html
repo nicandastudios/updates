@@ -38,6 +38,19 @@ nav.inhalt { max-width: 42rem; margin: 0 auto; padding: 0 1rem; }
 nav.inhalt .inhalt-titel { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
   color: var(--leise); margin: 0 0 .5rem; }
 nav.inhalt ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+html { scroll-padding-top: 3.25rem; }
+.leiste { position: sticky; top: 0; z-index: 2; display: flex; justify-content: flex-end; background: var(--grund);
+  border-bottom: 1px solid var(--linie); padding: 0 1rem; }
+.leiste a { display: inline-block; padding: .7rem 0 .7rem 1rem; min-height: 2.75rem; color: var(--akzent);
+  text-decoration: none; font-weight: 600; }
+#zu { position: fixed; top: 0; }
+nav.ueber { display: none; }
+nav.ueber:target { display: block; position: fixed; z-index: 3; top: 0; right: 0; bottom: 0; left: 0; max-width: none;
+  overflow-y: auto; overscroll-behavior: contain; scroll-padding-top: 4rem; padding: 0 1rem 2rem;
+  background: var(--grund); }
+nav.ueber .innen { min-height: calc(100% + 1px); }
+nav.ueber a.zu { display: block; position: sticky; top: 0; text-align: right; padding: 1.3rem 0 .9rem; color: var(--akzent);
+  font-weight: 600; text-decoration: none; background: var(--grund); }
 nav.inhalt li { margin: 0; border-bottom: 1px solid var(--linie); }
 nav.inhalt a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .55rem 0;
   text-decoration: none; color: var(--text); }
@@ -51,7 +64,13 @@ nav.inhalt a:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2
   .seite > main { grid-area: liste; margin: 0; padding: 1rem 1rem 2rem 0; }
   .seite > footer { grid-area: fuss; margin: 0; padding-left: 0; }
   .seite > nav.inhalt { grid-area: inhalt; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; margin: 0;
-    padding: 2.5rem 1.25rem 2rem 1.5rem; min-height: 100vh; border-right: 1px solid var(--linie); }
+    padding: 2.5rem 1.25rem 2rem 1.5rem; min-height: 100vh; max-width: none; border-right: 1px solid var(--linie); }
+  html { scroll-padding-top: 0; }
+  .leiste, nav.ueber:target { display: none; }
+}
+@media (max-width: 59.99rem) {
+  html:has(nav.ueber:target) { overflow: hidden; }
+  nav.ueber:target ~ .leiste, nav.ueber:target ~ .seite { visibility: hidden; }
 }
 ul.apps { list-style: none; padding: 0; margin: 1.5rem 0 0; }
 ul.apps li { border-top: 1px solid var(--linie); padding: .9rem 0; margin: 0; font-size: 1.15rem; }
@@ -59,23 +78,41 @@ footer { border-top: 1px solid var(--linie); padding-top: 1rem; padding-bottom: 
 </style>
 </head>
 <body>
+<span id="zu"></span>
+<nav class="inhalt ueber" id="inhalt" aria-label="Versionen">
+<div class="innen">
+<a class="zu" href="#zu">Schliessen</a>
+<p class="inhalt-titel">Versionen</p>
+<ol>
+<li><a href="#version-0-76-0" aria-label="Version 0.76.0 vom 31.10.2026"><span class="nummer">0.76.0</span><span class="tag">31.10.2026</span></a></li>
+<li><a href="#version-0-75-2" aria-label="Version 0.75.2 vom 29.10.2026"><span class="nummer">0.75.2</span><span class="tag">29.10.2026</span></a></li>
+<li><a href="#version-0-75-1" aria-label="Version 0.75.1 vom 28.10.2026"><span class="nummer">0.75.1</span><span class="tag">28.10.2026</span></a></li>
+<li><a href="#version-0-75-0" aria-label="Version 0.75.0 vom 27.10.2026"><span class="nummer">0.75.0</span><span class="tag">27.10.2026</span></a></li>
+</ol>
+</div>
+</nav>
+<div class="leiste"><a href="#inhalt">Versionen</a></div>
 <div class="seite">
 <header class="kopf">
 <h1>Daymory – Updates</h1>
-<p>Jede Version von Daymory, die neueste zuerst – mit Datum, Versionsnummer, neuen Funktionen und Fehlerbehebungen.</p>
+<p>Jede Version von Daymory, die neueste zuerst – mit Datum, Versionsnummer, neuen Funktionen, Verbesserungen und Fehlerbehebungen.</p>
 <p class="leise">Daymory ist noch nicht veröffentlicht.</p>
 </header>
 <nav class="inhalt" aria-label="Versionen">
 <p class="inhalt-titel">Versionen</p>
 <ol>
+<li><a href="#version-0-76-0" aria-label="Version 0.76.0 vom 31.10.2026"><span class="nummer">0.76.0</span><span class="tag">31.10.2026</span></a></li>
+<li><a href="#version-0-75-2" aria-label="Version 0.75.2 vom 29.10.2026"><span class="nummer">0.75.2</span><span class="tag">29.10.2026</span></a></li>
 <li><a href="#version-0-75-1" aria-label="Version 0.75.1 vom 28.10.2026"><span class="nummer">0.75.1</span><span class="tag">28.10.2026</span></a></li>
 <li><a href="#version-0-75-0" aria-label="Version 0.75.0 vom 27.10.2026"><span class="nummer">0.75.0</span><span class="tag">27.10.2026</span></a></li>
 </ol>
 </nav>
 <main>
 <ol class="versionen">
-<li id="version-0-75-1"><h2>Version 0.75.1 <span class="leise">· 28.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Im Archiv ist die laufende Tour gekennzeichnet und zeigt Distanz, Dauer und Aufstieg laufend. Eine unterbrochene Tour ist als offen gekennzeichnet.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass der Aufstieg während einer Tour lange fehlte und erst später nachkam. Das ist behoben: Er kommt laufend aus dem Höhenmodell, wie die Distanz – auch auf dem Sperrbildschirm und in der Dynamic Island.</li><li>Es konnte vorkommen, dass eine gespeicherte Tour mit einer geraden Linie von einem früheren Ort begann und deshalb eine zu lange Strecke zeigte. Das ist behoben: Die Linie ist ausgeblendet, und die Strecke ist ohne sie gerechnet. Gespeichert bleibt die Tour, wie sie war.</li><li>Es konnte vorkommen, dass eine einzige beschädigte Tour alle Touren verbarg. Das ist behoben: Die übrigen erscheinen, und die App sagt, dass eine Tour nicht gelesen werden konnte.</li><li>Es konnte vorkommen, dass eine Tour ihre Karte nach einer neuen Aufzeichnung wieder laden musste und deshalb langsam öffnete. Das ist behoben: Das gespeicherte Bild ihrer Karte bleibt, solange sich die Karte in ihrer Umgebung nicht ändert.</li></ul></li>
-<li id="version-0-75-0"><h2>Version 0.75.0 <span class="leise">· 27.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Jede Tour zeigt Aufstieg und Abstieg aus einem Höhenmodell, ein Höhenprofil, die Höhe am Start und am Ziel, den höchsten und den tiefsten Punkt, die Geschwindigkeiten und die Luftlinie.</li><li>Nach einem Update zeigt ein Fenster, was neu ist, und im Profil steht der Versionsverlauf.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass eine neue Tour an einem früheren Ort begann und von dort eine gerade Linie zog. Das ist behoben.</li><li>Es konnte vorkommen, dass die Karte beim Start einer Tour die ganze Welt zeigte. Das ist behoben.</li><li>Es konnte vorkommen, dass bei einer Tour «Aufstieg 0 m» stand, obwohl es bergauf ging. Das ist behoben.</li><li>Es konnte vorkommen, dass Karten beim Öffnen etwas länger brauchten, bis sie fertig gezeichnet waren. Das ist behoben.</li></ul></li>
+<li id="version-0-76-0"><h2>Version 0.76.0 <span class="leise">· 31.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Das Höhenprofil einer Tour lässt sich berühren und mit dem Finger abfahren: Für jede Stelle stehen Distanz, Aufstieg, Abstieg und Dauer bis dorthin da, dazu Höhe, Steigung und Tempo an dieser Stelle. Ein Punkt auf der Karte zeigt, wo diese Stelle liegt.</li><li>Hat eine Tour ein Höhenprofil, geht das auch auf ihrer Karte: Ein Tipp auf die Route zeigt die Angaben zu dieser Stelle.</li><li>Die Angaben und der Punkt verschwinden mit einem zweiten Tipp auf die Stelle, mit einem Tipp neben die Route oder mit «Stelle ausblenden» neben dem Titel des Höhenprofils.</li><li>Mit VoiceOver, der Vorlesehilfe des iPhones, lässt sich das Höhenprofil Schritt für Schritt abfahren.</li><li>In einer gespeicherten Tour liegt zwischen Karte und Angaben ein Griff. Wer ihn nach oben wischt, blendet die Karte aus, und die Angaben füllen den ganzen Bildschirm. Nach unten gewischt kommt die Karte zurück, noch einmal nach unten wird sie gross. Auch ein Tipp auf den Griff blendet die Karte aus und ein.</li><li>Auf der Seite «Profil» lässt sich unter «Dynamic Island» wählen, was die zugeklappte Dynamic Island während einer Tour neben der Dauer zeigt: die «Entfernung», also die Distanz, die «Höhenmeter», also den Aufstieg, oder mit der Wahl «Dauer» nichts weiter. Die Wahl gilt sofort, auch während einer laufenden Tour. Aufgeklappt und auf dem Sperrbildschirm stehen weiter Dauer, Distanz und Aufstieg.</li><li>Liegt eine Tour ganz im Gebiet mit Höhendaten, zeigt die Tour den Höhenunterschied zwischen Start und Ende als eigene Zahl. Während einer Aufzeichnung steht er bei den übrigen Angaben und reicht bis zur aktuellen Stelle.</li></ul><h3>Verbesserungen</h3><ul><li>Während einer Aufzeichnung stehen nur noch Dauer und Distanz auf dem Bildschirm, gleich gross. Ein Tipp auf die Schaltfläche neben diesen Zahlen zeigt die übrigen Angaben; dort liegt jetzt auch die Einstellung «Zahlen grösser».</li><li>In einer gespeicherten Tour stehen unter der Karte zuerst Dauer und Wegstrecke, alle übrigen Angaben in einem eigenen Feld darunter.</li><li>In einer gespeicherten Tour steht die Zeile, woher die Karte stammt, nicht mehr unter der Karte: Sie erscheint auf der Karte und verschwindet nach einigen Sekunden. Das Feld «© Karte» unten links bleibt und öffnet die Seite «Kartenquellen»; es steht auch während einer Aufzeichnung auf der Karte.</li><li>Die Seite «Profil» ist in Gruppen gegliedert. Jede Zeile hat ein Symbol und einen Titel, darunter steht eine kurze Erklärung oder was gerade eingestellt ist. Die gespeicherten Karten und der Datenschutz haben je eine eigene Seite.</li><li>Die runden Schaltflächen auf der Karte stehen weiter auseinander.</li><li>Nach einer Neuinstallation bereitet die App das Zeichnen der Karte jetzt vor, bevor die erste Karte erscheint. Die erste Karte soll dadurch weniger stocken.</li><li>Enthält der Name einer Strasse oder eines Orts auf der Karte ein Zeichen, das die App nicht kennt, zeichnet sie die Karte jetzt trotzdem fertig: Gängige Satzzeichen wie Apostroph oder Gedankenstrich ersetzt sie durch das ähnlichste, jedes andere Zeichen lässt sie in diesem Namen weg.</li><li>Beim Öffnen zeigt eine Tour zuerst ein gespeichertes Bild ihrer Karte, wenn sie eines hat. Fehlt es, zeichnet die App es jetzt nach und nach selbst, sobald schon einmal eine Tour geöffnet war: eine Tour nach der anderen, höchstens zwölf je Start der App, während die Liste des Archivs offen ist, keine Aufzeichnung läuft und einige Sekunden niemand tippt. Das gilt für abgeschlossene Touren, deren Karte samt ihrer nächsten Umgebung vollständig auf dem iPhone gespeichert ist; das Internet braucht die App dafür nicht.</li><li>Das Fenster «Was neu ist» und der Versionsverlauf sind in Neue Funktionen, Verbesserungen und Fehlerbehebungen gegliedert. Auf der Seite hinter «Mehr dazu im Web» lässt sich die Liste «Versionen» jetzt von überall aufrufen.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass während einer Aufzeichnung der Bereich unter der Karte abgeschnitten wurde, wenn am iPhone eine sehr grosse Schrift eingestellt war. Das ist behoben: Er lässt sich jetzt rollen.</li><li>Es konnte vorkommen, dass die Karte einer Tour nur noch ein schmales Band war und die Route nicht zeigte, wenn am iPhone eine sehr grosse Schrift eingestellt war. Das ist behoben.</li><li>Es konnte vorkommen, dass Wörter und Zahlen in den Listen der Seite «Profil», in den Titeln der Abschnitte und in den Angaben einer Tour mittendrin getrennt wurden, wenn am iPhone eine sehr grosse Schrift eingestellt war. Das ist behoben.</li><li>Es konnte vorkommen, dass «Bearbeiten» und «Karte zeigen» übereinander lagen und der Text auf der Schaltfläche «Beenden» verrutschte, wenn am iPhone eine sehr grosse Schrift eingestellt war. Das ist behoben.</li></ul></li>
+<li id="version-0-75-2"><h2>Version 0.75.2 <span class="leise">· 29.10.2026</span></h2><h3>Verbesserungen</h3><ul><li>Ab dem zweiten Öffnen zeigt eine Tour zuerst ein gespeichertes Bild ihrer Karte, wenn sie eines hat. Die App muss dieses Bild jetzt seltener neu zeichnen: Lädt sie Karten in der Nähe einer Tour, bleibt das Bild, solange diese Karten nicht im Bild oder gleich daneben liegen.</li></ul></li>
+<li id="version-0-75-1"><h2>Version 0.75.1 <span class="leise">· 28.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Im Archiv ist die laufende Tour gekennzeichnet; Distanz, Dauer und Aufstieg zählen dort mit. Wurde die Aufzeichnung einer Tour nicht beendet, ist die Tour als offen gekennzeichnet und zeigt die Zahlen bis dorthin.</li><li>Das Fenster «Was neu ist» und der Versionsverlauf führen mit «Mehr dazu im Web» zu einer Seite mit den Neuerungen jeder Version.</li></ul><h3>Verbesserungen</h3><ul><li>Ab dem zweiten Öffnen zeigt eine Tour zuerst ein gespeichertes Bild ihrer Karte, wenn sie eines hat. Die App muss dieses Bild jetzt seltener neu zeichnen: Lädt sie Karten für einen anderen Ort, etwa beim Start einer Aufzeichnung oder beim Laden einer Gegend, bleibt das Bild.</li><li>Beginnt eine gespeicherte Tour mit einer geraden Linie von einem Ort, an dem das iPhone vorher war, blendet die App diese Linie aus und rechnet die Distanz ohne sie. Die gespeicherte Tour selbst bleibt unverändert.</li><li>Ist eine Tour beschädigt, erscheinen die übrigen trotzdem, und die App sagt, dass eine Tour nicht gelesen werden konnte.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass der Aufstieg während einer Tour lange fehlte und erst später nachkam, auch auf dem Sperrbildschirm und in der aufgeklappten Dynamic Island. Das ist behoben: Im Gebiet mit Höhendaten rechnet die App ihn laufend daraus.</li></ul></li>
+<li id="version-0-75-0"><h2>Version 0.75.0 <span class="leise">· 27.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Liegt eine Tour ganz im Gebiet mit Höhendaten, zeigt sie Aufstieg und Abstieg, ein Höhenprofil, die Höhe am Start und am Ende und den höchsten und den tiefsten Punkt. Ausserdem zeigt jede Tour die Durchschnitts- und die Höchstgeschwindigkeit und die Luftlinie zwischen Start und Ende.</li><li>Nach einem Update zeigt ein Fenster, was neu ist, und auf der Seite «Profil» steht der Versionsverlauf.</li></ul><h3>Verbesserungen</h3><ul><li>Karten sind beim Öffnen schneller fertig gezeichnet.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass eine neue Tour nicht am aktuellen Standort begann, sondern an einem Ort, an dem das iPhone vorher war, und von dort eine gerade Linie zog. Das ist behoben.</li><li>Es konnte vorkommen, dass die Karte beim Start einer Tour die ganze Welt zeigte. Das ist behoben.</li><li>Es konnte vorkommen, dass bei einer Tour «Aufstieg 0 m» stand, obwohl es bergauf ging. Das ist behoben.</li></ul></li>
 </ol>
 </main>
 <footer>

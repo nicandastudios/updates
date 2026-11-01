@@ -38,6 +38,19 @@ nav.inhalt { max-width: 42rem; margin: 0 auto; padding: 0 1rem; }
 nav.inhalt .inhalt-titel { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
   color: var(--leise); margin: 0 0 .5rem; }
 nav.inhalt ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+html { scroll-padding-top: 3.25rem; }
+.leiste { position: sticky; top: 0; z-index: 2; display: flex; justify-content: flex-end; background: var(--grund);
+  border-bottom: 1px solid var(--linie); padding: 0 1rem; }
+.leiste a { display: inline-block; padding: .7rem 0 .7rem 1rem; min-height: 2.75rem; color: var(--akzent);
+  text-decoration: none; font-weight: 600; }
+#zu { position: fixed; top: 0; }
+nav.ueber { display: none; }
+nav.ueber:target { display: block; position: fixed; z-index: 3; top: 0; right: 0; bottom: 0; left: 0; max-width: none;
+  overflow-y: auto; overscroll-behavior: contain; scroll-padding-top: 4rem; padding: 0 1rem 2rem;
+  background: var(--grund); }
+nav.ueber .innen { min-height: calc(100% + 1px); }
+nav.ueber a.zu { display: block; position: sticky; top: 0; text-align: right; padding: 1.3rem 0 .9rem; color: var(--akzent);
+  font-weight: 600; text-decoration: none; background: var(--grund); }
 nav.inhalt li { margin: 0; border-bottom: 1px solid var(--linie); }
 nav.inhalt a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .55rem 0;
   text-decoration: none; color: var(--text); }
@@ -51,7 +64,13 @@ nav.inhalt a:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2
   .seite > main { grid-area: liste; margin: 0; padding: 1rem 1rem 2rem 0; }
   .seite > footer { grid-area: fuss; margin: 0; padding-left: 0; }
   .seite > nav.inhalt { grid-area: inhalt; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; margin: 0;
-    padding: 2.5rem 1.25rem 2rem 1.5rem; min-height: 100vh; border-right: 1px solid var(--linie); }
+    padding: 2.5rem 1.25rem 2rem 1.5rem; min-height: 100vh; max-width: none; border-right: 1px solid var(--linie); }
+  html { scroll-padding-top: 0; }
+  .leiste, nav.ueber:target { display: none; }
+}
+@media (max-width: 59.99rem) {
+  html:has(nav.ueber:target) { overflow: hidden; }
+  nav.ueber:target ~ .leiste, nav.ueber:target ~ .seite { visibility: hidden; }
 }
 ul.apps { list-style: none; padding: 0; margin: 1.5rem 0 0; }
 ul.apps li { border-top: 1px solid var(--linie); padding: .9rem 0; margin: 0; font-size: 1.15rem; }
